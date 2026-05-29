@@ -239,10 +239,15 @@ prediction_results/
 ├── Consensus_BoundaryBins_ALL.bed
 ├── Consensus_Filtered_BoundaryRegion_All.bed
 └── Iterations_models/                  (optional)
-    ├── Binsbest_transformer_1_boundaryBin_ALL.bed
-    ├── Binsbest_transformer_1_boundaryRegion_ALL.bed
-    ├── Binsbest_transformer_2_boundaryBin_ALL.bed
-    ├── Binsbest_transformer_2_boundaryRegion_ALL.bed
+    ├── best_transformer_1_boundaryBin_ALL.bed
+    ├── best_transformer_1_boundaryRegion_ALL.bed
+    ├── best_transformer_2_boundaryBin_ALL.bed
+    ├── best_transformer_2_boundaryRegion_ALL.bed
     └── ...
 ```
+- Consensus_Filtered_BoundaryRegion_All.bed: This file represents the primary output of EpiTADformer and is recommended for downstream analyses. It contains final regions after clustering neighbor predicted bins and merging overlaping consensus regions from all iteration models.
+- Consensus_BoundaryBins_ALL.bed - This file contains consensus predicted boundary bins supported by at least `min_files` trained iteration models.
+- Iterations_models/*_boundaryBin_ALL.bed - These files contain predicted boundary bins from each individual iteration model before region clustering and consensus filtering.
+- Iterations_models/*_boundaryRegion_ALL.bed  - These files contain boundary regions identified by each individual iteration model after clustering adjacent predicted boundary bins, but before consensus region construction across models.
+  
 
