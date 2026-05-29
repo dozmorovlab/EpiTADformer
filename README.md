@@ -55,7 +55,7 @@ epitadformer-data --help
 ```
 If the installation is successful, each command will display its available options.
 
-- *Update:* To install the latest version from GitHub:
+- **Update:** To install the latest version from GitHub:
 
 ```bash
 pip install --upgrade git+https://github.com/dozmorovlabs/EpiTADformer.git
@@ -115,7 +115,7 @@ chr22   110000  110100  1
 > **Note:** Place all feature files for a cell type into a single directory and order them alphabetically by feature name. Each file should contain genomic signal values for one epigenomic feature across the genome.
 
 
-##### Process BAM signal input.
+#### Process BAM signal input.
 The signal files are commonly distributed as (unfiltered/filtered) allignment in BAM format. Signal files for many cell types can be download at ENCODEproject, GEO (Gene Expression Omnibus), 4D Nucleome Data Portal, etc. To process these files to the required format of EpiTAD former,
   - Generate binned signal tracks using bamCoverage from deepTools and export the results as a bedGraph file. For example,
   
@@ -141,7 +141,7 @@ Beside the pre-trained models in **Method 1**, user can train model with differe
 
 Before training EpiTADformer models, the epigenomic signal files must be converted into deep-learning-ready datasets. This step is performed using the `epitadformer-data` command, which generates training, validation, and testing datasets stored as `.pkl` files.
 
-##### Step 2 - 1: Prepare training, validation, and testing datasets 
+#### Step 2 - 1: Prepare training, validation, and testing datasets 
 Before training EpiTADformer models, the epigenomic signal files must be converted into deep-learning-ready datasets. This step is performed using the `epitadformer-data` command, which generates training, validation, and testing datasets stored as `.pkl` files.
 
 Run:
@@ -171,7 +171,7 @@ epitadformer-data_train \
   ---
   
 
-##### Step 2 - 2: Training iteration models 
+#### Step 2 - 2: Training iteration models 
 
 After generating training datasets using **Step 2**, the next step is to train EpiTADformer models.
 
@@ -229,7 +229,7 @@ epitadformer-predict \
 
 **Note:** Number and order of features used in trained models (window input dimension) will be same as those input used in prediction step 3
 
-##### Prediction output layout
+#### Prediction output layout
 
 After prediction is completed, EpiTADformer generates the following output structure:
 
