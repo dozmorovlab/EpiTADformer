@@ -134,7 +134,8 @@ samtools merge merged.bam replicate1.bam replicate2.bam replicate3.bam
 ### Step 2 - Train models.
 
 #### Method 1.
-We do provided pre-trained models (.h5) using Top 5, Top 7, Top 10, Top 15, top 20 of GM12878 epigenome features in 100 bp resolution which can be download in Zenodo: https://doi.org/10.5281/zenodo.20442355. Using this pre-trained model, user can go to **step 3** to make prediction on desired cell type or target's boundary. 
+We provide pre-trained EpiTADformer models (.h5) developed using the top 5, top 7, top 10, top 15, and top 20 GM12878 epigenomic features at 100 bp resolution. These models are available for download from Zenodo: https://doi.org/10.5281/zenodo.20442355.
+Using these pre-trained models, users may skip the training dataset generation and model training steps (skip **Steps 2 -1** and **Step 2 - 2**) and proceed directly to **Step 3** – Predict TAD Boundaries for their cell type or genomic dataset of interest.
 
 #### Method 2.
 Beside the pre-trained models in **Method 1**, user can train model with different options of top GM12878 feature or top signal features in different cell lines.
