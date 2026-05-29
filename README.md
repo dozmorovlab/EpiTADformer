@@ -130,16 +130,11 @@ samtools merge merged.bam replicate1.bam replicate2.bam replicate3.bam
 
 > **Note:** The pretrained EpiTADformer models were developed using GM12878 epigenomic signals. We provided top 20 GM12878 features' proccessed files (100bp resolution) (by EpiTADformer required format), which can be download in Zenodo: https://doi.org/10.5281/zenodo.20442355. These includes a experiment per features, which was chosen as best among different labs' experimemts based on attention score analysis from our models.
 
-\
 
 ### Step 2 - Train models.
 
-\
-
 #### Method 1.
 We do provided pre-trained models (.h5) using Top 5, Top 7, Top 10, Top 15, top 20 of GM12878 epigenome features in 100 bp resolution which can be download in Zenodo: https://doi.org/10.5281/zenodo.20442355. Using this pre-trained model, user can go to **step 3** to make prediction on desired cell type or target's boundary. 
-
-\
 
 #### Method 2.
 Beside the pre-trained models in **Method 1**, user can train model with different options of top GM12878 feature or top signal features in different cell lines.
@@ -196,8 +191,7 @@ epitadformer-train \
   | `--output_dir` | **Require** Directory where trained EpiTADformer models will be saved. |
   
   ---
-  
-\
+
 
 
 ### Step 3 - Prediction.
