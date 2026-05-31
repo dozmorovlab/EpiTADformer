@@ -161,7 +161,7 @@ epitadformer-data_train \
   | Parameter | Description |
   |----------|---------------|
   | `--full_data_dir` | **Require** Directory containing all epigenomic feature files prepared in **Step 1**. |
-  | `--truth_dir` | **Require** Directory of a BED file containing experimentally validated TAD boundary locations with 3 columns (chr, start, end).  |
+  | `--truth_dir` | **Require** Directory of a BED file containing experimentally validated TAD boundary locations with 3 columns (chr, start, end). User can provide their own groughtruth. Otherwise, EpiTADformer uses preciseTAD groundtruth, which can be download in Zenodo: https://doi.org/10.5281/zenodo.20442355. |
   | `--peak_dir` | **Require** Overlap Peak Directory: Directory containing BED files folder of genomic regions that overlap strong epigenomic peaks (CTCF, RAD21, SMC3). This folder ('peakOverlap_chr') can be download in Zenodo: https://doi.org/10.5281/zenodo.20442355. |
   | `--save_dir` | **Require** Directory where generated `.pkl` datasets will be saved. |
   | `--target_chrs` | **Require** Chromosomes included in dataset generation. |
