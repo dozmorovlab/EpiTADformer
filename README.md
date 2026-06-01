@@ -51,7 +51,7 @@ pip install -e .
 ```bash
 epitadformer-train --help
 epitadformer-predict --help
-epitadformer-data --help
+epitadformer-data-train --help
 ```
 If the installation is successful, each command will display its available options.
 
