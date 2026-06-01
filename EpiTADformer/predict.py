@@ -242,13 +242,13 @@ def read_data_dir(dir_path, target_chrs):
 # =========================================================
 # Main
 # =========================================================
-def main(
+def run(
     full_data_dir,
     model_dir,
     save_dir,
     target_chrs,
+    bin_size,
     min_files=16,
-    bin_size=100,
     sequence_len=101,
     save_iteration_models = False
 ):
@@ -723,72 +723,36 @@ def main(
 
     print(f"\n✅ Final saved: {final_output}")
 
-if __name__ == "__main__":
 
+
+
+
+
+def main():
     parser = argparse.ArgumentParser(
         description="Predict TAD boundaries using EpiTADformer"
     )
+    parser.add_argument("--full_data_dir", required=True,
+        help="Directory containing epigenomic signal files")
+    parser.add_argument("--model_dir", required=True,
+        help="Directory containing trained models")
+    parser.add_argument("--save_dir", required=True,
+        help="Directory to save prediction results")
+    parser.add_argument("--target_chrs", nargs="+", required=True,
+        help="Chromosomes to analyze")
+    parser.add_argument("--min_files", type=int, default=16)
+    parser.add_argument("--bin_size", type=int, required=True,
+        help="Data resolution (bin size)")
+    parser.add_argument("--sequence_len", type=int, default=101)
+    parser.add_argument("--save_iteration_models", action="store_true",
+        help="Save boundary bins and regions from each individual model")
 
-    parser.add_argument(
-        "--full_data_dir",
-        required=True,
-        help="Directory containing epigenomic signal files"
-    )
-
-    parser.add_argument(
-        "--model_dir",
-        required=True,
-        help="Directory containing trained models"
-    )
-
-    parser.add_argument(
-        "--save_dir",
-        required=True,
-        help="Directory to save prediction results"
-    )
-
-    parser.add_argument(
-        "--target_chrs",
-        nargs="+",
-        required=True,
-        help="Chromosomes to analyze"
-    )
-
-    parser.add_argument(
-        "--min_files",
-        type=int,
-        default=16
-    )
-
-    parser.add_argument(
-        "--bin_size",
-        type=int,
-        required=True,
-    )
-
-    parser.add_argument(
-        "--sequence_len",
-        type=int,
-        default=101,
-        help="Directory containing epigenomic signal files"
-    )
-
-    parser.add_argument(
-        "--save_iteration_models",
-        action="store_true",
-        help="Save boundary bins and regions from each individual model"
-    )
-    
     args = parser.parse_args()
 
-    # sequence length must be odd
     if args.sequence_len % 2 == 0:
-        raise ValueError(
-            "sequence_len must be odd"
-        )
+        raise ValueError("sequence_len must be odd")
 
-
-    main(
+    run(
         full_data_dir=args.full_data_dir,
         model_dir=args.model_dir,
         save_dir=args.save_dir,
@@ -798,3 +762,6 @@ if __name__ == "__main__":
         sequence_len=args.sequence_len,
         save_iteration_models=args.save_iteration_models
     )
+
+if __name__ == "__main__":
+    main()

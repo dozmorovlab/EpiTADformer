@@ -181,7 +181,7 @@ def prepare_training_data(PTBP_expand, data, overlap_Peak,
 # =========================================================
 # Main
 # =========================================================
-def main(
+def run(
     full_data_dir,
     truth_dir,
     peak_dir,
@@ -357,69 +357,25 @@ def main(
             del X_train_scale, y_train_full_shuffled, X_val_scale, y_val_full_shuffled, X_test_scale, y_test
             gc.collect()
                 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(
         description="Prepare training datasets for EpiTADformer"
     )
-
-    parser.add_argument(
-        "--full_data_dir",
-        required=True,
-        help="Directory containing epigenomic signal files"
-    )
-
-    parser.add_argument(
-        "--truth_dir",
-        required=True,
-        help="Ground truth BED file"
-    )
-
-    parser.add_argument(
-        "--peak_dir",
-        required=True,
-        help="Directory containing overlap peak BED files"
-    )
-
-    parser.add_argument(
-        "--save_dir",
-        required=True,
-        help="Directory to save output datasets"
-    )
-
-    parser.add_argument(
-        "--target_chrs",
-        nargs="+",
-        required=True,
-        help="Chromosomes to process"
-    )
-
-    parser.add_argument(
-        "--bin_size",
-        type=int,
-        default=100
-    )
-
-    parser.add_argument(
-        "--sequence_len",
-        type=int,
-        default=101
-    )
-
-    parser.add_argument(
-        "--num_iterations",
-        type=int,
-        default=20
-    )
+    parser.add_argument("--full_data_dir", required=True)
+    parser.add_argument("--truth_dir", required=True)
+    parser.add_argument("--peak_dir", required=True)
+    parser.add_argument("--save_dir", required=True)
+    parser.add_argument("--target_chrs", nargs="+", required=True)
+    parser.add_argument("--bin_size", type=int, default=100)
+    parser.add_argument("--sequence_len", type=int, default=101)
+    parser.add_argument("--num_iterations", type=int, default=20)
 
     args = parser.parse_args()
 
     if args.sequence_len % 2 == 0:
-        raise ValueError(
-            "sequence_len must be odd"
-        )
+        raise ValueError("sequence_len must be odd")
 
-    main(
+    run(
         full_data_dir=args.full_data_dir,
         truth_dir=args.truth_dir,
         peak_dir=args.peak_dir,
@@ -430,6 +386,5 @@ if __name__ == "__main__":
         num_iterations=args.num_iterations
     )
 
-
-    
-    
+if __name__ == "__main__":
+    main()

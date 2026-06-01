@@ -128,97 +128,34 @@ def read_data_dir(dir_path, target_chrs):
 # -----------------------------
 # Main function
 # -----------------------------
-def main(data_dir, output_dir):
-
-    os.makedirs(output_dir, exist_ok=True)
-
-    file_list = sorted([
-        f for f in os.listdir(data_dir)
-        if f.endswith(".pkl")
-    ])
-
-    for i, file_name in enumerate(file_list):
-
-        print(f"\nDataset {i+1}: {file_name}")
-
-        file_path = os.path.join(data_dir, file_name)
-
-        with open(file_path, "rb") as f:
-            data = pickle.load(f)
-
-        X_train = data["X_train"]
-        y_train = data["y_train"]
-
-        X_val = data["X_val"]
-        y_val = data["y_val"]
-
-        input_shape = (
-            X_train.shape[1],
-            X_train.shape[2]
-        )
-
-        model = build_model(input_shape)
-
-        model.compile(
-            optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
-            loss="binary_crossentropy",
-            metrics=[
-                "accuracy",
-                AUC(name="auc"),
-                Precision(name="precision"),
-                Recall(name="recall")
-            ]
-        )
-
-        model_file = os.path.join(
-            output_dir,
-            f"best_transformer_{i+1}.h5"
-        )
-
-        checkpoint_cb = ModelCheckpoint(
-            model_file,
-            save_best_only=True,
-            monitor="val_loss",
-            mode="min"
-        )
-
-        earlystop_cb = EarlyStopping(
-            monitor='val_loss',
-            patience=10,
-            restore_best_weights=True
-        )
-
-        model.fit(
-            X_train,
-            y_train,
-            validation_data=(X_val, y_val),
-            epochs=100,
-            batch_size=32,
-            callbacks=[checkpoint_cb, earlystop_cb],
-            verbose=0
-        )
-
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(
-        description="Trained EpiTADformer models"
+        description="Prepare training datasets for EpiTADformer"
     )
-
-    parser.add_argument(
-        "--data_dir",
-        required=True,
-        help="Directory containing training pickle files"
-    )
-
-    parser.add_argument(
-        "--output_dir",
-        required=True,
-        help="Directory to save trained models"
-    )
+    parser.add_argument("--full_data_dir", required=True)
+    parser.add_argument("--truth_dir", required=True)
+    parser.add_argument("--peak_dir", required=True)
+    parser.add_argument("--save_dir", required=True)
+    parser.add_argument("--target_chrs", nargs="+", required=True)
+    parser.add_argument("--bin_size", type=int, default=100)
+    parser.add_argument("--sequence_len", type=int, default=101)
+    parser.add_argument("--num_iterations", type=int, default=20)
 
     args = parser.parse_args()
 
-    main(
-        data_dir=args.data_dir,
-        output_dir=args.output_dir
+    if args.sequence_len % 2 == 0:
+        raise ValueError("sequence_len must be odd")
+
+    run(
+        full_data_dir=args.full_data_dir,
+        truth_dir=args.truth_dir,
+        peak_dir=args.peak_dir,
+        save_dir=args.save_dir,
+        target_chrs=args.target_chrs,
+        bin_size=args.bin_size,
+        sequence_len=args.sequence_len,
+        num_iterations=args.num_iterations
     )
+
+if __name__ == "__main__":
+    main()
