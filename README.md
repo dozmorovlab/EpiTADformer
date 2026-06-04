@@ -89,7 +89,7 @@ EpiTADformer predicts TAD boundaries using epigenomic signal tracks. For each ce
 19. YY1
 20. PKNOX1
 
-> **Note:** Users do not need all 20 features. EpiTADformer can generate predictions with a subset of features (at least 5 features), although prediction performance may improve when more informative features are provided.
+> **Note:** Users do not need all 20 features. EpiTADformer can generate predictions with a subset of features (at least 5 features, recommended always include CTCF and ZZZ3), although prediction performance may improve when more informative features are provided.
 
 #### Input Requirements
 
@@ -134,7 +134,7 @@ samtools merge merged.bam replicate1.bam replicate2.bam replicate3.bam
 ### Step 2 - Train models.
 
 #### Method 1.
-We provide pre-trained EpiTADformer models (.h5) developed using the top 5, top 7, top 10, top 15, and top 20 GM12878 epigenomic features at 100 bp resolution. These models are available for download from Zenodo: https://doi.org/10.5281/zenodo.20442355.
+We provide pre-trained EpiTADformer models (.h5) developed using the top 5, top 7, top 10, and top 20 (in order from rank 1 to lower) GM12878 epigenomic features at 100 bp resolution. These models are available for download from Zenodo: https://doi.org/10.5281/zenodo.20442355.
 Using these pre-trained models, users may skip the training dataset generation and model training steps (skip **Steps 2 -1** and **Step 2 - 2**) and proceed directly to **Step 3** – Predict TAD Boundaries for their cell type or genomic dataset of interest.
 
 #### Method 2.
