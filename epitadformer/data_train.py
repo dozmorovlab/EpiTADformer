@@ -183,7 +183,7 @@ def prepare_training_data(PTBP_expand, data, overlap_Peak,
 # =========================================================
 def run(
     full_data_dir,
-    truth_dir,
+    truth_file,
     peak_dir,
     save_dir,
     target_chrs,
@@ -196,7 +196,7 @@ def run(
     
     ## read groundtruth
     all_chrom_PTBP = {}
-    base_dir = truth_dir
+    base_dir = truth_file
     for chr_name in target_chrs:  # Include chromosome 22
         try:
             ptbp_df = pd.read_csv(base_dir, sep='\t', header=None)
@@ -362,7 +362,7 @@ def main():
         description="Prepare training datasets for EpiTADformer"
     )
     parser.add_argument("--full_data_dir", required=True)
-    parser.add_argument("--truth_dir", required=True)
+    parser.add_argument("--truth_file", required=True)
     parser.add_argument("--peak_dir", required=True)
     parser.add_argument("--save_dir", required=True)
     parser.add_argument("--target_chrs", nargs="+", required=True)
@@ -377,7 +377,7 @@ def main():
 
     run(
         full_data_dir=args.full_data_dir,
-        truth_dir=args.truth_dir,
+        truth_file=args.truth_file,
         peak_dir=args.peak_dir,
         save_dir=args.save_dir,
         target_chrs=args.target_chrs,
