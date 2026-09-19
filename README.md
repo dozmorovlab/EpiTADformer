@@ -1,7 +1,7 @@
 # EpiTADformer
 
 EpiTADformer is a method for improved TAD boundary prediction utilizing positional information about epigenomic signals (transcription factor binding sites (TFBSs), histone modification marks). EpiTADformer is a transformer encoder-based model that learns both linear and non-linear positional relationships between epigenomic features associated with high-resolution (100 bp) genomic regions (bins).
-Here is the interactive IGV browser for our sample of detected boundary regions with CTCF and cohesin signal tracks on chromosome 15, 16, and 17: [https://tinyurl.com/kjcuk46p](https://tinyurl.com/kjcuk46p). You can also download the IGV session and the associated files at: [https://www.dropbox.com/scl/fo/v1hqo33mnmv9bt58b15tz/AFdJd8DbParrqDt71XTxyRw?rlkey=rzy24vy92z9arjikubv2pycp0&st=gmbxrcei&e=1&dl=0](https://www.dropbox.com/scl/fo/v1hqo33mnmv9bt58b15tz/AFdJd8DbParrqDt71XTxyRw?rlkey=rzy24vy92z9arjikubv2pycp0&st=gmbxrcei&e=1&dl=0).
+Here is the interactive IGV browser for our sample of detected boundary regions with CTCF and cohesin signal tracks on chromosome 15, 16, and 17: [https://tinyurl.com/4zwmz8k6](https://tinyurl.com/4zwmz8k6). You can also download the IGV session and the associated files at: [https://www.dropbox.com/scl/fi/4gd68wm170yvl3un5oeoz/full_boundary_signal_session.json?rlkey=wxzep4truen6s1te4vci3r1u7&st=1o8e69mr&dl=0](https://www.dropbox.com/scl/fi/4gd68wm170yvl3un5oeoz/full_boundary_signal_session.json?rlkey=wxzep4truen6s1te4vci3r1u7&st=1o8e69mr&dl=0).
 
 ![EpiTADtransformer main figure](method.png)
 
