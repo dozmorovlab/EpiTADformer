@@ -1,7 +1,7 @@
 # EpiTADformer
 
 EpiTADformer is a method for improved TAD boundary prediction utilizing positional information about epigenomic signals (transcription factor binding sites (TFBSs), histone modification marks). EpiTADformer is a transformer encoder-based model that learns both linear and non-linear positional relationships between epigenomic features associated with high-resolution (100 bp) genomic regions (bins).
-Here is the interactive IGV browser for our sample of detected boundary regions with CTCF and cohesin signal tracks. [Open the interactive IGV viewer](file:///C:/Users/nguyenm21/Documents/GitHub/EpiTADformer/igv/index.html).
+Here is the interactive IGV browser for our sample of detected boundary regions with CTCF and cohesin signal tracks. [Open the interactive IGV viewer](https://dozmorovlab.github.io/EpiTADformer/igv/index.html).
 
 ![EpiTADtransformer main figure](method.png)
 
